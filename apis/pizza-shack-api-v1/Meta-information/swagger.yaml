@@ -103,19 +103,6 @@ paths:
         '304':
           description: Not Modified. Empty body because the client has already the latest version of the requested resource.
           content: {}
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                '401':
-                  value:
-                    fault:
-                      code: 900902
-                      message: Missing Credentials
-                      description: 'Invalid Credentials. Make sure your API invocation call has a header: ''Authorization : Bearer ACCESS_TOKEN'' or ''Authorization : Basic ACCESS_TOKEN'' or ''apikey: API_KEY'''
         '406':
           description: Not Acceptable. The requested media type is not supported
           content:
@@ -364,6 +351,11 @@ components:
           scopes:
             'resource:writer': Internal/writer
             'resource:reader': Internal/reader
+        password:
+          tokenUrl: 'https://localhost:8243/token'
+          scopes:
+            'resource:writer': 'resource:writer'
+            'resource:reader': 'resource:reader'
       x-scopes-bindings:
         'resource:reader': Internal/reader
         'resource:writer': Internal/writer
