@@ -7,7 +7,6 @@ pipeline {
         API_DIR = './apis/'
         APP_DIR = './apps/'
         DEV_ENV = 'local'
-        TEST_SCRIPT_FILE = '$API_NAME-$API_VER.postman_collection.json'  
     }
                   
     stages {
@@ -80,7 +79,7 @@ pipeline {
             steps {
                 echo 'Token are $TOKEN'
                 echo 'Running tests in $DEV_ENV'
-                sh 'newman run ./tests/$TEST_SCRIPT_FILE -e ./tests/$DEV_ENV.postman_environment.json --reporters cli,junit,htmlextra --reporter-junit-export "postman.xml" -n 1 --reporter-htmlextra-export "newman/report.html" --insecure --bail' 
+                sh 'newman run ./tests/$API_NAME-$API_VER.postman_collection.json -e ./tests/$DEV_ENV.postman_environment.json --reporters cli,junit,htmlextra --reporter-junit-export "postman.xml" -n 1 --reporter-htmlextra-export "newman/report.html" --insecure --bail' 
             }
         }
     }
