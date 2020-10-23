@@ -1,405 +1,396 @@
+openapi: 3.0.1
+info:
+  title: pizza-shack-api
+  description: |
+    This is a RESTFul API for Pizza Shack online pizza delivery store.
+  contact:
+    name: John Doe
+    url: 'http://www.pizzashack.com'
+    email: architecture@pizzashack.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: v1
+servers:
+  - url: 'https://localhost:8243/pizzashack/v1'
+security:
+  - default: []
+tags:
+  - name: menu
+    description: Everything about your menu
+  - name: order
+    description: Access to pizza orders
+paths:
+  /order:
+    post:
+      operationId: createOrder
+      description: Create a new Order
+      requestBody:
+        description: Order object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        '201':
+          description: Created. Successful response with the newly created object as entity inthe body. Location header contains URL of newly created entity.
+          headers:
+            Location:
+              description: The URL of the newly created resource.
+              schema:
+                type: string
+            Content-Type:
+              description: The content type of the body.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad Request. Invalid request or validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '415':
+          description: Unsupported Media Type. The entity of the request was in a not supported format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - default:
+            - 'resource:writer'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+        optional: false
+      x-codegen-request-body-name: body
+      tags:
+        - order
+      summary: ''
+  /menu:
+    get:
+      operationId: listMenu
+      description: Return a list of available menu items
+      responses:
+        '200':
+          description: OK. List of APIs is returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+              examples:
+                200-OK:
+                  value:
+                    - name: BBQ Chicken Bacon
+                      description: 'Grilled white chicken, hickory-smoked bacon and fresh sliced onions in barbeque sauce'
+                      price: '25,99'
+                      icon: /images/6.png
+                    - name: Chicken Parmesan
+                      description: 'Grilled chicken, fresh tomatoes, feta and mozzarella cheese'
+                      price: '28,99'
+                      icon: /images/1.png
+        '201':
+          description: Created
+        '304':
+          description: Not Modified. Empty body because the client has already the latest version of the requested resource.
+          content: {}
+        '406':
+          description: Not Acceptable. The requested media type is not supported
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - default:
+            - 'resource:reader'
+            - 'resource:writer'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+        optional: false
+      tags:
+        - menu
+  '/order/{orderId}':
+    get:
+      operationId: getDetailoOrderId
+      description: Get details of an Order
+      parameters:
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: OK Requested Order will be returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '304':
+          description: Not Modified. Empty body because the client has already the latest version of the requested resource.
+          content: {}
+        '404':
+          description: Not Found. Requested API does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '406':
+          description: Not Acceptable. The requested media type is not supported
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - default:
+            - 'resource:reader'
+            - 'resource:writer'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+        optional: false
+      tags:
+        - order
+    put:
+      operationId: updateOrder
+      description: Update an existing Order
+      parameters:
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: string
+            format: string
+      requestBody:
+        description: Order object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        '200':
+          description: OK. Successful response with updated Order
+          headers:
+            Location:
+              description: The URL of the newly created resource.
+              schema:
+                type: string
+            Content-Type:
+              description: The content type of the body.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad Request. Invalid request or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found. The resource to be updated does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '412':
+          description: Precondition Failed. The request has not been performed because one of the preconditions is not met.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - default:
+            - 'resource:writer'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+        optional: false
+      x-codegen-request-body-name: body
+      tags:
+        - order
+    delete:
+      operationId: deleteOrder
+      description: Delete an existing Order
+      parameters:
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: OK. Resource successfully deleted.
+          content: {}
+        '404':
+          description: Not Found. Resource to be deleted does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '412':
+          description: Precondition Failed. The request has not been performed because one of the preconditions is not met.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - default:
+            - 'resource:writer'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+        optional: false
+      tags:
+        - order
 components:
   schemas:
-    Error:
-      properties:
-        code:
-          format: int64
-          type: integer
-        description:
-          description: A detail description about the error message.
-          type: string
-        error:
-          description: If there are more than one error list them out. Ex. list out
-            validation errors by each field.
-          items:
-            $ref: '#/components/schemas/ErrorListItem'
-          type: array
-        message:
-          description: Error message.
-          type: string
-        moreInfo:
-          description: Preferably an url with more details about the error.
-          type: string
-      required:
-      - code
-      - message
-      title: Error object returned with 4XX HTTP status
-      type: object
     ErrorListItem:
-      properties:
-        code:
-          format: int64
-          type: integer
-        message:
-          description: Description about individual errors occurred
-          type: string
-      required:
-      - code
-      - message
       title: Description of individual errors that may have occurred during a request.
+      required:
+        - code
+        - message
       type: object
-    MenuItem:
       properties:
-        description:
+        message:
           type: string
-        image:
+          description: Description about individual errors occurred
+        code:
+          type: integer
+          format: int64
+    MenuItem:
+      title: Pizza menu Item
+      required:
+        - name
+      type: object
+      properties:
+        price:
+          type: string
+        description:
           type: string
         name:
           type: string
-        price:
+        image:
           type: string
-      required:
-      - name
-      title: Pizza menu Item
-      type: object
     Order:
+      title: Pizza Order
+      required:
+        - orderId
+      type: object
       properties:
-        address:
-          type: string
-        creditCardNumber:
-          type: string
         customerName:
           type: string
         delivered:
           type: boolean
-        orderId:
+        address:
           type: string
         pizzaType:
           type: string
+        creditCardNumber:
+          type: string
         quantity:
           type: number
+        orderId:
+          type: string
+    Error:
+      title: Error object returned with 4XX HTTP status
       required:
-      - orderId
-      title: Pizza Order
+        - code
+        - message
       type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        error:
+          type: array
+          description: If there are more than one error list them out. Ex. list out validation errors by each field.
+          items:
+            $ref: '#/components/schemas/ErrorListItem'
+        description:
+          type: string
+          description: A detail description about the error message.
+        code:
+          type: integer
+          format: int64
+        moreInfo:
+          type: string
+          description: Preferably an url with more details about the error.
   securitySchemes:
     default:
+      type: oauth2
       flows:
         implicit:
-          authorizationUrl: https://test.com
+          authorizationUrl: 'https://test.com'
           scopes:
-            resource:reader: Internal/reader
-            resource:writer: writer
-      type: oauth2
+            'resource:writer': writer
+            'resource:reader': Internal/reader
       x-scopes-bindings:
-        resource:reader: Internal/reader
-        resource:writer: Internal/writer
-info:
-  contact:
-    email: architecture@pizzashack.com
-    name: John Doe
-    url: http://www.pizzashack.com
-  description: |
-    This is a RESTFul API for Pizza Shack online pizza delivery store.
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  title: pizza-shack-api
-  version: v1
-openapi: 3.0.1
-paths:
-  /menu:
-    get:
-      description: Return a list of available menu items
-      operationId: listMenu
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                200-OK:
-                  value:
-                  - description: Grilled white chicken, hickory-smoked bacon and fresh
-                      sliced onions in barbeque sauce
-                    icon: /images/6.png
-                    name: BBQ Chicken Bacon
-                    price: 25,99
-                  - description: Grilled chicken, fresh tomatoes, feta and mozzarella
-                      cheese
-                    icon: /images/1.png
-                    name: Chicken Parmesan
-                    price: 28,99
-              schema:
-                description: ""
-                items:
-                  $ref: '#/components/schemas/MenuItem'
-                minItems: 1
-                type: array
-                uniqueItems: true
-          description: OK. List of APIs is returned.
-        "201":
-          description: Created
-        "304":
-          content: {}
-          description: Not Modified. Empty body because the client has already the
-            latest version of the requested resource.
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Acceptable. The requested media type is not supported
-      security:
-      - default:
-        - resource:reader
-        - resource:writer
-      tags:
-      - menu
-      x-auth-type: Application & Application User
-      x-throttling-tier: Unlimited
-      x-wso2-application-security:
-        optional: false
-        security-types:
-        - oauth2
-  /order:
-    post:
-      description: Create a new Order
-      operationId: createOrder
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Order'
-        description: Order object that needs to be added
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-          description: Created. Successful response with the newly created object
-            as entity inthe body. Location header contains URL of newly created entity.
-          headers:
-            Content-Type:
-              description: The content type of the body.
-              schema:
-                type: string
-            Location:
-              description: The URL of the newly created resource.
-              schema:
-                type: string
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request. Invalid request or validation error.
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unsupported Media Type. The entity of the request was in a
-            not supported format.
-      security:
-      - default:
-        - resource:writer
-      summary: ""
-      tags:
-      - order
-      x-auth-type: Application & Application User
-      x-codegen-request-body-name: body
-      x-throttling-tier: Unlimited
-      x-wso2-application-security:
-        optional: false
-        security-types:
-        - oauth2
-  /order/{orderId}:
-    delete:
-      description: Delete an existing Order
-      operationId: deleteOrder
-      parameters:
-      - description: Order Id
-        in: path
-        name: orderId
-        required: true
-        schema:
-          format: string
-          type: string
-      responses:
-        "200":
-          content: {}
-          description: OK. Resource successfully deleted.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found. Resource to be deleted does not exist.
-        "412":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Precondition Failed. The request has not been performed because
-            one of the preconditions is not met.
-      security:
-      - default:
-        - resource:writer
-      tags:
-      - order
-      x-auth-type: Application & Application User
-      x-throttling-tier: Unlimited
-      x-wso2-application-security:
-        optional: false
-        security-types:
-        - oauth2
-    get:
-      description: Get details of an Order
-      operationId: getDetailoOrderId
-      parameters:
-      - description: Order Id
-        in: path
-        name: orderId
-        required: true
-        schema:
-          format: string
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-          description: OK Requested Order will be returned
-        "304":
-          content: {}
-          description: Not Modified. Empty body because the client has already the
-            latest version of the requested resource.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found. Requested API does not exist.
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Acceptable. The requested media type is not supported
-      security:
-      - default:
-        - resource:reader
-        - resource:writer
-      tags:
-      - order
-      x-auth-type: Application & Application User
-      x-throttling-tier: Unlimited
-      x-wso2-application-security:
-        optional: false
-        security-types:
-        - oauth2
-    put:
-      description: Update an existing Order
-      operationId: updateOrder
-      parameters:
-      - description: Order Id
-        in: path
-        name: orderId
-        required: true
-        schema:
-          format: string
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Order'
-        description: Order object that needs to be added
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-          description: OK. Successful response with updated Order
-          headers:
-            Content-Type:
-              description: The content type of the body.
-              schema:
-                type: string
-            Location:
-              description: The URL of the newly created resource.
-              schema:
-                type: string
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request. Invalid request or validation error
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found. The resource to be updated does not exist.
-        "412":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Precondition Failed. The request has not been performed because
-            one of the preconditions is not met.
-      security:
-      - default:
-        - resource:writer
-      tags:
-      - order
-      x-auth-type: Application & Application User
-      x-codegen-request-body-name: body
-      x-throttling-tier: Unlimited
-      x-wso2-application-security:
-        optional: false
-        security-types:
-        - oauth2
-security:
-- default: []
-servers:
-- url: https://localhost:8243/pizzashack/v1
-tags:
-- description: Everything about your menu
-  name: menu
-- description: Access to pizza orders
-  name: order
-x-wso2-application-security:
-  optional: false
-  security-types:
-  - oauth2
+        'resource:reader': Internal/reader
+        'resource:writer': Internal/writer
 x-wso2-auth-header: Authorization
-x-wso2-basePath: /pizzashack/v1
 x-wso2-cors:
+  corsConfigurationEnabled: false
+  accessControlAllowOrigins:
+    - '*'
   accessControlAllowCredentials: false
   accessControlAllowHeaders:
-  - authorization
-  - Access-Control-Allow-Origin
-  - Content-Type
-  - SOAPAction
-  - apikey
-  - testKey
+    - authorization
+    - Access-Control-Allow-Origin
+    - Content-Type
+    - SOAPAction
+    - apikey
+    - testKey
   accessControlAllowMethods:
-  - GET
-  - PUT
-  - POST
-  - DELETE
-  - PATCH
-  - OPTIONS
-  accessControlAllowOrigins:
-  - '*'
-  corsConfigurationEnabled: false
+    - GET
+    - PUT
+    - POST
+    - DELETE
+    - PATCH
+    - OPTIONS
 x-wso2-production-endpoints:
-  type: http
   urls:
-  - https://localhost:9443/am/sample/pizzashack/v1/api/
-x-wso2-response-cache:
-  cacheTimeoutInSeconds: 300
-  enabled: false
+    - 'https://localhost:9443/am/sample/pizzashack/v1/api/'
+  type: http
 x-wso2-sandbox-endpoints:
-  type: http
   urls:
-  - https://localhost:9443/am/sample/pizzashack/v1/api/
+    - 'http://localhost:4010'
+  type: http
+x-wso2-basePath: /pizzashack/1.0.0
 x-wso2-transports:
-- https
+  - https
+x-wso2-application-security:
+  security-types:
+    - oauth2
+  optional: false
+x-wso2-response-cache:
+  enabled: false
+  cacheTimeoutInSeconds: 300
