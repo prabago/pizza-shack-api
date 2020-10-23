@@ -370,7 +370,7 @@ x-wso2-application-security:
   security-types:
   - oauth2
 x-wso2-auth-header: Authorization
-x-wso2-basePath: /pizzashack/1.0.0
+x-wso2-basePath: /pizzashack/v1
 x-wso2-cors:
   accessControlAllowCredentials: false
   accessControlAllowHeaders:
