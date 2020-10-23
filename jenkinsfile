@@ -8,6 +8,7 @@ pipeline {
         APP_DIR = './apps/'
         DEV_ENV = 'local'
         API_BCK = '/var/lib/jenkins/.wso2apictl/exported/apis/'
+        env.deploy='false';
     }
                   
     stages {
@@ -68,6 +69,7 @@ pipeline {
             }
             steps {
                 echo "Import APIs to ${DEV_ENV}"
+                
                 sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
             }
         }
