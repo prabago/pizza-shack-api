@@ -1,0 +1,110 @@
+pipeline {
+    agent any
+    tools {nodejs "node"}
+    environment {
+        API_NAME = 'pizza-shack-api'
+        API_VER= 'v1'
+        API_DIR = './apis/'
+        APP_DIR = './apps/'
+        DEV_ENV = 'local'
+        TEST_SCRIPT_FILE = '{$API_NAME}-{$API_VER}.postman_collection.json'  
+    }
+                  
+    stages {
+         stage('Check OpenAPI Spectral Lint') {
+            steps {
+            sh 'git submodule foreach git checkout master'
+            sh 'git submodule foreach git pull'
+
+                script {
+            try {
+                sh 'spectral lint "./apis/$API_NAME/Meta-information/swagger.yaml" -r ./spectral/atc-spectral.yaml --format junit --output ./report.xml'
+            } catch(err) {
+                step([$class: 'JUnitResultArchiver', testResults: './report.xml'])
+                 currentBuild.result = 'FAILURE'
+                throw err
+            }
+             }
+            }
+        }
+
+        stage('Run mock-server') {
+            steps {
+                sh 'docker ps -f name=$API_NAME  -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=$API_NAME -q | xargs -r docker container rm'
+                sh 'docker run --init --rm -it -d --name $API_NAME -v $(pwd):/tmp -P stoplight/prism:4 mock -h 0.0.0.0 "/tmp/apis/$API_NAME/Meta-information/swagger.yaml"'
+            }
+        }
+
+        stage('Post Mock-server task') {
+            environment{
+                MOCK_PORT = sh(script: 'docker port $API_NAME 4010 | cut -d":" -f2', , returnStdout: true).trim()
+                RETRY = '80'
+            }
+            steps {
+                echo "Port to ${MOCK_PORT}"
+                sh 'find . -name "*.yaml" -print | xargs sed -i "s/4010/${MOCK_PORT}/g"'
+            }
+        }
+
+        stage('Pre Task Deployment') {
+            steps {
+                echo "Register to ${DEV_ENV}"
+                sh './scripts/config.sh'
+                echo 'Logging into ${$DEV_ENV}'
+                withCredentials([usernamePassword(credentialsId: 'apim_dev', usernameVariable: 'DEV_USERNAME', passwordVariable: 'DEV_PASSWORD')]) {
+                    sh 'apictl login $DEV_ENV -u $DEV_USERNAME -p $DEV_PASSWORD -k'                        
+                }
+            }
+        }
+            stage('Despliegue APIS') {
+            environment{
+                MOCK_PORT = sh(script: 'docker port $API_NAME 4010 | cut -d":" -f2', , returnStdout: true).trim()
+                RETRY = '80'
+            }
+            steps {
+                echo "Import APIs to ${DEV_ENV}"
+                sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
+            }
+        }
+
+        stage('Despliegue APPs') {
+            steps {
+                echo "Import APPs to ${DEV_ENV}"
+                sh 'apictl import-app -f $APP_DIR/* -e $DEV_ENV -k --preserveOwner --update --verbose'
+                sh 'apictl logout $DEV_ENV -k'
+            }
+        }
+        
+        stage('Ejecucion de Tests contra Sandbox') {
+            steps {
+                echo 'Token are $TOKEN'
+                echo 'Running tests in $DEV_ENV'
+                sh 'newman run ./tests/$TEST_SCRIPT_FILE -e ./test/$DEV_ENV.postman_environment.json --reporters cli,junit,htmlextra --reporter-junit-export "postman.xml" -n 1 --reporter-htmlextra-export "newman/report.html" --insecure --bail' 
+            }
+        }
+    }
+    post {
+        success {
+            junit '*.xml'
+            publishHTML (target: [
+              allowMissing: false,
+              alwaysLinkToLastBuild: false,
+              keepAll: true,
+              reportDir: 'newman',
+              reportFiles: 'report.html',
+              reportName: "postman-test"
+            ])
+        }
+        cleanup {
+            deleteDir()
+            dir("${workspace}@tmp") {
+                deleteDir()
+            }
+            dir("${workspace}@script") {
+                deleteDir()
+            }
+        }
+        
+    }
+}

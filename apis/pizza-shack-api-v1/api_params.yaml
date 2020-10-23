@@ -1,0 +1,13 @@
+environments:
+  - name: local
+    endpoints:
+      production:
+        url: https://localhost:9443/am/sample/pizzashack/v1/api/   
+      sandbox:         
+        url: http://localhost:4010
+    
+
+deploy:
+  import:
+    update: true
+    preserveProvider: true

@@ -1,0 +1,38 @@
+id:
+  providerName: prabago
+  apiName: pizza-shack-api
+  version: v1
+description: |
+  This is a RESTFul API for Pizza Shack online pizza delivery store.
+type: HTTP
+context: /pizzashack/1.0.0/v1
+contextTemplate: /pizzashack/1.0.0/{version}
+tags:
+- menu
+- order
+availableTiers:
+- name: Bronze
+status: CREATED
+visibility: public
+transports: https
+corsConfiguration:
+  corsConfigurationEnabled: true
+  accessControlAllowOrigins:
+  - '*'
+  accessControlAllowHeaders:
+  - authorization
+  - Access-Control-Allow-Origin
+  - Content-Type
+  - SOAPAction
+  - apikey
+  - testKey
+  accessControlAllowMethods:
+  - GET
+  - PUT
+  - POST
+  - DELETE
+  - PATCH
+  - OPTIONS
+endpointConfig: '{"endpoint_type":"http","production_endpoints":{"url":"https://localhost:9443/am/sample/pizzashack/v1/api/"},"sandbox_endpoints":{"url":"https://localhost:9443/am/sample/pizzashack/v1/api/"}}'
+isDefaultVersion: true
+enableStore: true
