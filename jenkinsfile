@@ -103,7 +103,7 @@ pipeline {
             ])
         }
         failure {
-        sh 'apictl import-api -f $API_BCK/$DEV_ENV/$API_NAME_$API_VER -e $DEV_ENV -k --preserve-provider --update --verbose'
+        sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
         }
         cleanup {
             sh 'apictl logout $DEV_ENV -k'
