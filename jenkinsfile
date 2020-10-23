@@ -100,7 +100,7 @@ pipeline {
               reportName: "postman-test"
             ])
         }
-        error {
+        failure {
         sh 'apictl import-api -f $API_BCK/$DEV_ENV/$API_NAME_$API_VER -e $DEV_ENV -k --preserve-provider --update --verbose'
         }
         cleanup {
