@@ -12,7 +12,7 @@ tags:
 - order
 availableTiers:
 - name: Bronze
-status: CREATED
+status: PUBLISHED
 visibility: public
 transports: https
 corsConfiguration:
