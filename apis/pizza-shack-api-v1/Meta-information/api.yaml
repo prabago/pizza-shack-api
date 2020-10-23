@@ -35,5 +35,6 @@ corsConfiguration:
   - PATCH
   - OPTIONS
 endpointConfig: '{"endpoint_type":"http","production_endpoints":{"url":"https://localhost:9443/am/sample/pizzashack/v1/api/"},"sandbox_endpoints":{"url":"https://localhost:9443/am/sample/pizzashack/v1/api/"}}'
-isDefaultVersion: true
+isDefaultVersion: false
+isPublishedDefaultVersion: false
 enableStore: true
