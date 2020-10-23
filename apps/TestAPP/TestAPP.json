@@ -24,12 +24,6 @@
         "id": 61,
         "tenantId": 0
       },
-      "apiId": {
-        "providerName": "adminatc",
-        "apiName": "PizzaShackAPI",
-        "version": "1.0.0",
-        "id": 0
-      },
       "application": {
         "id": 0,
         "name": "TestAPP",
