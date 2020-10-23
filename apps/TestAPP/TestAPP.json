@@ -9,86 +9,6 @@
   },
   "subscribedAPIs": [
     {
-      "subscriptionId": 62,
-      "tier": {
-        "name": "Unlimited",
-        "displayName": "Unlimited",
-        "requestsPerMin": 0,
-        "requestCount": 0,
-        "unitTime": 0,
-        "timeUnit": "ms",
-        "stopOnQuotaReached": true
-      },
-      "subscriber": {
-        "name": "LDAP/gauss",
-        "id": 61,
-        "tenantId": 0
-      },
-      "application": {
-        "id": 0,
-        "name": "TestAPP",
-        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
-        "subscriber": {
-          "name": "LDAP/gauss",
-          "id": 61,
-          "tenantId": 0
-        },
-        "subscribedAPIs": [],
-        "keys": [],
-        "keyManagerWiseOAuthApp": {},
-        "applicationAttributes": {},
-        "subscriptionCount": 0
-      },
-      "subStatus": "UNBLOCKED",
-      "subCreatedStatus": "SUBSCRIBE",
-      "keys": [],
-      "uuid": "0b399fc0-ad31-4ddf-9b96-4fc7dac18238",
-      "isBlocked": false
-    },
-    {
-      "subscriptionId": 111,
-      "tier": {
-        "name": "Bronze",
-        "displayName": "Bronze",
-        "requestsPerMin": 0,
-        "requestCount": 0,
-        "unitTime": 0,
-        "timeUnit": "ms",
-        "stopOnQuotaReached": true
-      },
-      "subscriber": {
-        "name": "LDAP/gauss",
-        "id": 61,
-        "tenantId": 0
-      },
-      "apiId": {
-        "providerName": "adminatc",
-        "apiName": "internal-api-mock",
-        "version": "v1",
-        "id": 0
-      },
-      "application": {
-        "id": 0,
-        "name": "TestAPP",
-        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
-        "subscriber": {
-          "name": "LDAP/gauss",
-          "id": 61,
-          "tenantId": 0
-        },
-        "subscribedAPIs": [],
-        "keys": [],
-        "keyManagerWiseOAuthApp": {},
-        "applicationAttributes": {},
-        "subscriptionCount": 0
-      },
-      "subStatus": "UNBLOCKED",
-      "subCreatedStatus": "SUBSCRIBE",
-      "keys": [],
-      "uuid": "59ad2326-7457-42b5-8368-2d450c4b8984",
-      "isBlocked": false
-    },
-    {
       "subscriptionId": 112,
       "tier": {
         "name": "Bronze",
@@ -129,49 +49,6 @@
       "subCreatedStatus": "SUBSCRIBE",
       "keys": [],
       "uuid": "c0a9af9c-36f7-4e11-a559-63f85477fba0",
-      "isBlocked": false
-    },
-    {
-      "subscriptionId": 121,
-      "tier": {
-        "name": "Bronze",
-        "displayName": "Bronze",
-        "requestsPerMin": 0,
-        "requestCount": 0,
-        "unitTime": 0,
-        "timeUnit": "ms",
-        "stopOnQuotaReached": true
-      },
-      "subscriber": {
-        "name": "LDAP/gauss",
-        "id": 61,
-        "tenantId": 0
-      },
-      "apiId": {
-        "providerName": "prabago",
-        "apiName": "api-internal-petstore",
-        "version": "v2",
-        "id": 0
-      },
-      "application": {
-        "id": 0,
-        "name": "TestAPP",
-        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
-        "subscriber": {
-          "name": "LDAP/gauss",
-          "id": 61,
-          "tenantId": 0
-        },
-        "subscribedAPIs": [],
-        "keys": [],
-        "keyManagerWiseOAuthApp": {},
-        "applicationAttributes": {},
-        "subscriptionCount": 0
-      },
-      "subStatus": "UNBLOCKED",
-      "subCreatedStatus": "SUBSCRIBE",
-      "keys": [],
-      "uuid": "ad68baaf-23c9-43ee-905f-fc5a165562ca",
       "isBlocked": false
     },
     {
