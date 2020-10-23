@@ -6,7 +6,7 @@ description: |
   This is a RESTFul API for Pizza Shack online pizza delivery store.
 type: HTTP
 context: /pizzashack/v1
-contextTemplate: /pizzashack/1.0.0/{version}
+contextTemplate: /pizzashack/{version}
 tags:
 - menu
 - order
