@@ -7,6 +7,7 @@ pipeline {
         API_DIR = './apis/'
         APP_DIR = './apps/'
         DEV_ENV = 'local'
+        API_BCK = '/var/lib/jenkins/.wso2apictl/exported/apis/'
     }
                   
     stages {
@@ -75,7 +76,7 @@ pipeline {
             steps {
                 echo "Import APPs to ${DEV_ENV}"
                 sh 'apictl import-app -f $APP_DIR/* -e $DEV_ENV -k --preserveOwner --update --verbose'
-                sh 'apictl logout $DEV_ENV -k'
+
             }
         }
         
@@ -99,7 +100,11 @@ pipeline {
               reportName: "postman-test"
             ])
         }
+        error {
+        sh 'apictl import-api -f $API_BCK/$DEV_ENV/$API_NAME_$API_VER -e $DEV_ENV -k --preserve-provider --update --verbose'
+        }
         cleanup {
+            sh 'apictl logout $DEV_ENV -k'
             deleteDir()
             dir("${workspace}@tmp") {
                 deleteDir()
