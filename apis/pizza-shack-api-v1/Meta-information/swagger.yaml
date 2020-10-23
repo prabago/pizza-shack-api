@@ -13,8 +13,6 @@ info:
   version: v1
 servers:
   - url: 'https://localhost:8243/pizzashack/v1'
-security:
-  - default: []
 tags:
   - name: menu
     description: Everything about your menu
@@ -105,6 +103,19 @@ paths:
         '304':
           description: Not Modified. Empty body because the client has already the latest version of the requested resource.
           content: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                '401':
+                  value:
+                    fault:
+                      code: 900902
+                      message: Missing Credentials
+                      description: 'Invalid Credentials. Make sure your API invocation call has a header: ''Authorization : Bearer ACCESS_TOKEN'' or ''Authorization : Basic ACCESS_TOKEN'' or ''apikey: API_KEY'''
         '406':
           description: Not Acceptable. The requested media type is not supported
           content:
@@ -349,9 +360,9 @@ components:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: 'https://test.com'
+          authorizationUrl: 'https://localhost:8243/token'
           scopes:
-            'resource:writer': writer
+            'resource:writer': Internal/writer
             'resource:reader': Internal/reader
       x-scopes-bindings:
         'resource:reader': Internal/reader
