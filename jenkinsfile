@@ -56,6 +56,11 @@ pipeline {
                 }
             }
         }
+        stage('Backup API') {
+            steps {
+            sh 'apictl export-api -n $API_NAME -v $API_VER -e $DEV_ENV -k --verbose'
+            }
+        }
             stage('Despliegue APIS') {
             environment{
                 RETRY = '80'
