@@ -89,6 +89,17 @@ pipeline {
                 sh 'newman run ./tests/$API_NAME-$API_VER.postman_collection.json -e ./tests/$DEV_ENV.postman_environment.json --reporters cli,junit,htmlextra --reporter-junit-export "postman.xml" -n 1 --reporter-htmlextra-export "newman/report.html" --insecure --bail' 
             }
         }
+
+        stage('Restore') {
+            when {
+              expression {
+                currentBuild.result == 'FAILURE' 
+              }
+            }
+            steps {
+                sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
+            }
+        }
     }
     post {
         always {
@@ -102,9 +113,7 @@ pipeline {
               reportName: "postman-test"
             ])
         }
-        failure {
-        sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
-        }
+    
         cleanup {
             sh 'apictl logout $DEV_ENV -k'
             deleteDir()
