@@ -29,15 +29,15 @@ pipeline {
 
         stage('Run mock-server') {
             steps {
-                sh 'docker ps -f name=$API_NAME  -q | xargs --no-run-if-empty docker container stop'
-                sh 'docker container ls -a -fname=$API_NAME -q | xargs -r docker container rm'
-                sh 'docker run --init --rm -it -d --name $API_NAME -v $(pwd):/tmp -P stoplight/prism:4 mock -h 0.0.0.0 "/tmp/apis/$API_NAME/Meta-information/swagger.yaml"'
+                sh 'docker ps -f name=$API_NAME-$API_VER  -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=$API_NAME-$API_VER -q | xargs -r docker container rm'
+                sh 'docker run --init --rm -it -d --name $API_NAME-$API_VER -v $(pwd):/tmp -P stoplight/prism:4 mock -h 0.0.0.0 "/tmp/apis/$API_NAME-$API_VER/Meta-information/swagger.yaml"'
             }
         }
 
         stage('Post Mock-server task') {
             environment{
-                MOCK_PORT = sh(script: 'docker port $API_NAME 4010 | cut -d":" -f2', , returnStdout: true).trim()
+                MOCK_PORT = sh(script: 'docker port $API_NAME-$API_VER 4010 | cut -d":" -f2', , returnStdout: true).trim()
                 RETRY = '80'
             }
             steps {
@@ -58,7 +58,6 @@ pipeline {
         }
             stage('Despliegue APIS') {
             environment{
-                MOCK_PORT = sh(script: 'docker port $API_NAME 4010 | cut -d":" -f2', , returnStdout: true).trim()
                 RETRY = '80'
             }
             steps {
