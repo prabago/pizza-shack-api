@@ -104,7 +104,7 @@
 								"exec": [
 									"jsonData = pm.response.json();",
 									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -968,17 +968,17 @@
 	],
 	"variable": [
 		{
-			"id": "aa20bd9d-7714-46c2-a687-d09bfd1f159e",
+			"id": "b9213baa-60d2-4ffe-b7bd-28de3ec2cefe",
 			"key": "access_token",
 			"value": "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJub2JlbCIsImF1ZCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJuYmYiOjE2MDM0NjExOTcsImF6cCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJzY29wZSI6InJlc291cmNlOndyaXRlciIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImV4cCI6MTYwMzQ2NDc5NywiaWF0IjoxNjAzNDYxMTk3LCJqdGkiOiJjYmIxZjg3OS00MjJlLTRkMGYtYjlhNi1kNjk1ZWFlMDE2YjcifQ.HiQD8r8AeieMmmeyb-ZyS-yyId0PtE_LXDX0y14_AauW4N91Ao3hxZeCgDbgxXtmcsv6u2gSISQYPSeimSgP3pC2koIbpgtKE9uAZzLz-8nA79bOyIVBb_yIrmXGsSOhGYjV052duzQbJUyIGr7_-zXuRsD3PfRAAn7rmze_nlxSHiqM68xeQvFuZat_R8995__iD0fd2dzXpcVrQKRZN5wR9dbVnXH46rqRRAQ4ibcic_cgClxUlM5MdpVwB6mrRhcPyByv8jQxp9O8v_fehjjdI-xNP144aUYvoXb8bAqJet5McMHyKzbJXx-oDDnBIA9JiSQ-672Qruugee6yBw"
 		},
 		{
-			"id": "2da7ae6f-de45-411f-96b8-af7c488743d7",
+			"id": "b1da16fc-8e05-42cb-ae1e-c10dcc55d79b",
 			"key": "scope",
 			"value": "resource:writer"
 		},
 		{
-			"id": "8316c71f-1ba7-431a-8649-bfefd5fbb2ae",
+			"id": "6022f745-5e72-4b4b-bf64-e1184f79e3c7",
 			"key": "orderId",
 			"value": "string"
 		}
