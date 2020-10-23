@@ -96,6 +96,21 @@
 				},
 				{
 					"name": "GAUSS GET Menu [reader scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a4f4d18-54b1-4867-8b4d-9b3965a64fa7",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -145,6 +160,21 @@
 				},
 				{
 					"name": "GAUSS POST Order [write scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63a06b20-3f5c-4b53-bc85-057865c3ef1b",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -160,27 +190,22 @@
 						"header": [
 							{
 								"key": "accept",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"type": "text"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer null",
+								"value": "Bearer eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhdWQiOiJPaDZVYU5kV3VsSUZVZ2hWb3pCZ0RuYjRXSThhIiwibmJmIjoxNTk5NjM5NjMxLCJhenAiOiJPaDZVYU5kV3VsSUZVZ2hWb3pCZ0RuYjRXSThhIiwic2NvcGUiOiJhbV9hcHBsaWNhdGlvbl9zY29wZSBkZWZhdWx0IiwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQzXC9vYXV0aDJcL3Rva2VuIiwiZXhwIjoxNTk5NjQzMjMxLCJpYXQiOjE1OTk2Mzk2MzEsImp0aSI6IjhmNGJmMDFlLTRlMDktNGU1Yi04N2NlLTE3N2I3NzZhNTIwNCJ9.o12-5BjrQZmxtNTYeaX2kYFd71pn6DxKdIJG0AvhNUqtDPbmXfqZ11aqNam9bR0QvUj3RLPXAC-lDERwL6BoDkS18xPaIFzs5H8ysPrnUxQxCXWcsMOrX9SjumdiNpLxXgUwBzJ9z6NxEE0p3YCNltoeMqHXSWlmnwEeloAex5r4Jk4toKLtwVIUZVNAP0GQ-s0-2XZtjljVfyrJziXK7CGRHkLc-QqGje-ukWKyomFh_5VcZRgl6XhyvS6bVzeJ7STxVaZboQxqF8sQ-sAeKIiKHqzNIjrcCbctyYMfmn8lObphgXAuYoFLXUTBhr2et6ptmi70FUE73kViX2Fq9Q",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-forwarded-for",
+								"value": "37.11.29.240",
+								"type": "text",
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"customerName\": \"atc\",\n    \"delivered\": true,\n    \"address\": \"prueba\",\n    \"pizzaType\": \"Chicken Parmesan\",\n    \"creditCardNumber\": \"98219832737372878723\",\n    \"quantity\": 1,\n    \"orderId\": \"1\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "https://localhost:8243/pizzashack/v1/order",
 							"protocol": "https",
@@ -285,6 +310,22 @@
 				},
 				{
 					"name": "GAUSS  PUT Order set 2 quantity [write scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0bb0ae24-f99f-4be5-bbfa-d7bf034815e0",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -300,15 +341,19 @@
 						"header": [
 							{
 								"key": "accept",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"type": "text"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer null",
+								"value": "Bearer eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhdWQiOiJPaDZVYU5kV3VsSUZVZ2hWb3pCZ0RuYjRXSThhIiwibmJmIjoxNTk5NjM5NjMxLCJhenAiOiJPaDZVYU5kV3VsSUZVZ2hWb3pCZ0RuYjRXSThhIiwic2NvcGUiOiJhbV9hcHBsaWNhdGlvbl9zY29wZSBkZWZhdWx0IiwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQzXC9vYXV0aDJcL3Rva2VuIiwiZXhwIjoxNTk5NjQzMjMxLCJpYXQiOjE1OTk2Mzk2MzEsImp0aSI6IjhmNGJmMDFlLTRlMDktNGU1Yi04N2NlLTE3N2I3NzZhNTIwNCJ9.o12-5BjrQZmxtNTYeaX2kYFd71pn6DxKdIJG0AvhNUqtDPbmXfqZ11aqNam9bR0QvUj3RLPXAC-lDERwL6BoDkS18xPaIFzs5H8ysPrnUxQxCXWcsMOrX9SjumdiNpLxXgUwBzJ9z6NxEE0p3YCNltoeMqHXSWlmnwEeloAex5r4Jk4toKLtwVIUZVNAP0GQ-s0-2XZtjljVfyrJziXK7CGRHkLc-QqGje-ukWKyomFh_5VcZRgl6XhyvS6bVzeJ7STxVaZboQxqF8sQ-sAeKIiKHqzNIjrcCbctyYMfmn8lObphgXAuYoFLXUTBhr2et6ptmi70FUE73kViX2Fq9Q",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-forwarded-for",
+								"value": "37.11.29.240",
+								"type": "text",
 								"disabled": true
 							}
 						],
@@ -340,6 +385,22 @@
 				},
 				{
 					"name": "GAUSS GET Order by orderId  [reader scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4cf9a0e5-e589-40e6-a9ec-138d229aa212",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -390,6 +451,22 @@
 				},
 				{
 					"name": "GAUSS DELETE Order [write scope] Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b8af9ec-693f-4fbd-856b-7f77727e8c45",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -405,7 +482,8 @@
 						"header": [
 							{
 								"key": "accept",
-								"value": "application/json"
+								"value": "application/json",
+								"disabled": true
 							},
 							{
 								"key": "Content-Type",
@@ -583,7 +661,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"customerName\": \"atc\",\n    \"delivered\": true,\n    \"address\": \"prueba\",\n    \"pizzaType\": \"Chicken Parmesan\",\n    \"creditCardNumber\": \"98219832737372878723\",\n    \"quantity\": 1\n}",
+							"raw": "{   \n    \"orderId\": \"empty\",\n    \"customerName\": \"atc\",\n    \"delivered\": true,\n    \"address\": \"prueba\",\n    \"pizzaType\": \"Chicken Parmesan\",\n    \"creditCardNumber\": \"98219832737372878723\",\n    \"quantity\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -608,6 +686,21 @@
 				},
 				{
 					"name": "NOBEL GET Menu  [reader scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ccf1cce-1266-4d7b-9154-d594486ec3e9",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -657,6 +750,22 @@
 				},
 				{
 					"name": "NOBEL GET Order by orderId  [reader scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac223a5c-23c6-4060-97fc-7fcd3f5a7d03",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -707,6 +816,21 @@
 				},
 				{
 					"name": "NOBEL PUT Order set 2 quantity [write scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f9bbc5c-404a-44ee-a696-482aff714b54",
+								"exec": [
+									"jsonData = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -736,7 +860,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"customerName\": \"atc\",\n    \"delivered\": true,\n    \"address\": \"prueba\",\n    \"pizzaType\": \"Chicken Parmesan\",\n    \"creditCardNumber\": \"98219832737372878723\",\n    \"quantity\": 2\n}",
+							"raw": "{    \n    \"orderId\": \"{{orderId}}\",\n    \"customerName\": \"atc\",\n    \"delivered\": true,\n    \"address\": \"prueba\",\n    \"pizzaType\": \"Chicken Parmesan\",\n    \"creditCardNumber\": \"98219832737372878723\",\n    \"quantity\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -762,6 +886,20 @@
 				},
 				{
 					"name": "NOBEL DELETE Order [write scope]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d991097a-ed70-4264-9523-252fc256ea72",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -776,16 +914,26 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "accept",
-								"value": "application/json"
-							},
-							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"type": "text"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer null",
+								"value": "Bearer nullaccept:application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhdWQiOiJPaDZVYU5kV3VsSUZVZ2hWb3pCZ0RuYjRXSThhIiwibmJmIjoxNTk5NjM5NjMxLCJhenAiOiJPaDZVYU5kV3VsSUZVZ2hWb3pCZ0RuYjRXSThhIiwic2NvcGUiOiJhbV9hcHBsaWNhdGlvbl9zY29wZSBkZWZhdWx0IiwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQzXC9vYXV0aDJcL3Rva2VuIiwiZXhwIjoxNTk5NjQzMjMxLCJpYXQiOjE1OTk2Mzk2MzEsImp0aSI6IjhmNGJmMDFlLTRlMDktNGU1Yi04N2NlLTE3N2I3NzZhNTIwNCJ9.o12-5BjrQZmxtNTYeaX2kYFd71pn6DxKdIJG0AvhNUqtDPbmXfqZ11aqNam9bR0QvUj3RLPXAC-lDERwL6BoDkS18xPaIFzs5H8ysPrnUxQxCXWcsMOrX9SjumdiNpLxXgUwBzJ9z6NxEE0p3YCNltoeMqHXSWlmnwEeloAex5r4Jk4toKLtwVIUZVNAP0GQ-s0-2XZtjljVfyrJziXK7CGRHkLc-QqGje-ukWKyomFh_5VcZRgl6XhyvS6bVzeJ7STxVaZboQxqF8sQ-sAeKIiKHqzNIjrcCbctyYMfmn8lObphgXAuYoFLXUTBhr2et6ptmi70FUE73kViX2Fq9Q",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-forwarded-for",
+								"value": "37.11.29.240",
+								"type": "text",
 								"disabled": true
 							}
 						],
@@ -821,19 +969,19 @@
 	],
 	"variable": [
 		{
-			"id": "a5da186a-74e2-4392-af82-2be8c3a29c66",
+			"id": "76304a01-5c2e-4cc8-9656-9c3f95183ed0",
 			"key": "access_token",
-			"value": "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJnYXVzcyIsImF1ZCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJuYmYiOjE2MDM0NTcwNzQsImF6cCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJzY29wZSI6InJlc291cmNlOnJlYWRlciIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImV4cCI6MTYwMzQ2MDY3NCwiaWF0IjoxNjAzNDU3MDc0LCJqdGkiOiI2MDdmMDdiMC1jMzYzLTQ4Y2UtOGIxOC02YjI3ODRkMWYzMTQifQ.QmRNwXNX37441wq73jTjnLTyY3m4dXPq6ZOJnJeIcd2w9EdGgsIiA-KYda-XR4THhIygxZeAuxJWCeVaE4WREnvYUXcA-yu2ol7fLWlvRaSN871FeA8F3qPf7ueddRW1VrBo9o17-bajfeLvNGzVQwX9zcvIiyfMx3-QDib-l7nGJPts45cah4qYA8iw00FrUAFhqCWnsqDZE75bUEGwySGuJ-iN9UiYYalIeP53_HOxoCZmOLog6dxZ7H1RJQn2agza-9qJDi8iUo1f3x5HCg7y3-l7GY_cHXyNYTH7hpLzEfP2PnErtLGWdlE2e6BAGNhcsXC-qiz9sImMB-i-lg"
+			"value": "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJub2JlbCIsImF1ZCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJuYmYiOjE2MDM0NjAyNDgsImF6cCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJzY29wZSI6InJlc291cmNlOndyaXRlciIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImV4cCI6MTYwMzQ2Mzg0OCwiaWF0IjoxNjAzNDYwMjQ4LCJqdGkiOiIyMmRjODBmMS0zN2M3LTRlYjMtODQzZC02ZTAzN2QwZDM2YTIifQ.NonR2JoRV1JFQm91NzNslqQ-0WWsOjIfa0HUureVKicvNBApVO0iBggo1tLzBHNE0XAuwFYQLN8Cdm31xYK33ySMpiF2Jx8yxsjZlutPo7WXn_lA64zGVH5J01k9LoywJqtaSCdukWbqmyrbrwrT2ZGCjj8neP_oT7s7m5mNpVZgqbDYe5XkBnENROy7BqoamR2VoBXD53m56a_3E75g2ftiADQ3pi_DBoYatZQbrsLOJAvVKQS8_N0NkPokrnnUVNOTPm9hgOkhEbmH1Yeb-YA84fAnZ4DBMpWp0plA2_0GqqpB0jPBDHJKg0tQUPtbWAKGrY_Xthh8DbFVyTG4Ew"
 		},
 		{
-			"id": "ffe07768-8b9f-412d-af3f-14068e657934",
+			"id": "428598e4-a5c5-480c-a051-c32cd93fafaf",
 			"key": "scope",
-			"value": "resource:reader"
+			"value": "resource:writer"
 		},
 		{
-			"id": "9b44225c-4759-4684-a487-a83c8c9a5617",
+			"id": "2dcc6082-9d09-474b-939a-c67ab529c551",
 			"key": "orderId",
-			"value": "3d7cb021-83b6-4773-896d-2d448781a847"
+			"value": "string"
 		}
 	],
 	"protocolProfileBehavior": {}
