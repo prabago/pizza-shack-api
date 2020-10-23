@@ -322,7 +322,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8243/pizzashack/v1order/{{orderId}}",
+							"raw": "https://localhost:8243/pizzashack/v1/order/{{orderId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -330,7 +330,8 @@
 							"port": "8243",
 							"path": [
 								"pizzashack",
-								"v1order",
+								"v1",
+								"order",
 								"{{orderId}}"
 							]
 						}
@@ -426,7 +427,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8243/pizzashack/v1order/{{orderId}}",
+							"raw": "https://localhost:8243/pizzashack/v1/order/{{orderId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -434,7 +435,8 @@
 							"port": "8243",
 							"path": [
 								"pizzashack",
-								"v1order",
+								"v1",
+								"order",
 								"{{orderId}}"
 							]
 						}
@@ -687,7 +689,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8243/pizzashack/v1order/{{orderId}}",
+							"raw": "https://localhost:8243/pizzashack/v1/order/{{orderId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -695,7 +697,8 @@
 							"port": "8243",
 							"path": [
 								"pizzashack",
-								"v1order",
+								"v1",
+								"order",
 								"{{orderId}}"
 							]
 						}
@@ -818,17 +821,17 @@
 	],
 	"variable": [
 		{
-			"id": "47457946-789b-4241-a098-8cc5984ae81d",
+			"id": "a5da186a-74e2-4392-af82-2be8c3a29c66",
 			"key": "access_token",
-			"value": "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJnYXVzcyIsImF1ZCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJuYmYiOjE2MDM0NDQwNDgsImF6cCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJzY29wZSI6InJlc291cmNlOnJlYWRlciIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImV4cCI6MTYwMzQ0NzY0OCwiaWF0IjoxNjAzNDQ0MDQ4LCJqdGkiOiIzOWRjMmU1Yi04N2U0LTQ3ZmUtYmZiNC0zMjY4MDc1MzMyMDcifQ.mi6MVl-73e54Z-YaHvk4ttj-9uJ7G0u7tcCqwyKLzQKaugEcMWjjYgbxkyWL8x4Zuwvz5gkHF_vNguZ9NG1elctqUPx3xg6_x7299rmh0ULOLrzJL9z_bieXFHn_58KGsEOWRXL3_6YIxXSNfN8TPn3CyPNsxqjHSen3o9dzndjo9z0lGNztfHLoIz1f-49_8YVmXeMRhrpSRiKVen8cFmHanZiVKk9tlDQH8YlAoW38_UhnXLKWt1R4NmvORN6OoKMCPEBK5QWB4e97TghL2nQgdMFpbms5Nck5m01phKxLG4oKBN4OFl7dhy021lAlA6_GjoJwX8u-H-Rhp1TvCw"
+			"value": "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJnYXVzcyIsImF1ZCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJuYmYiOjE2MDM0NTcwNzQsImF6cCI6Im9rdW13Wkc4ZkhrRmY0bzBpSl84b0tkRzZZWWEiLCJzY29wZSI6InJlc291cmNlOnJlYWRlciIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImV4cCI6MTYwMzQ2MDY3NCwiaWF0IjoxNjAzNDU3MDc0LCJqdGkiOiI2MDdmMDdiMC1jMzYzLTQ4Y2UtOGIxOC02YjI3ODRkMWYzMTQifQ.QmRNwXNX37441wq73jTjnLTyY3m4dXPq6ZOJnJeIcd2w9EdGgsIiA-KYda-XR4THhIygxZeAuxJWCeVaE4WREnvYUXcA-yu2ol7fLWlvRaSN871FeA8F3qPf7ueddRW1VrBo9o17-bajfeLvNGzVQwX9zcvIiyfMx3-QDib-l7nGJPts45cah4qYA8iw00FrUAFhqCWnsqDZE75bUEGwySGuJ-iN9UiYYalIeP53_HOxoCZmOLog6dxZ7H1RJQn2agza-9qJDi8iUo1f3x5HCg7y3-l7GY_cHXyNYTH7hpLzEfP2PnErtLGWdlE2e6BAGNhcsXC-qiz9sImMB-i-lg"
 		},
 		{
-			"id": "654b9e89-1941-4858-ac52-cadf3540bcc6",
+			"id": "ffe07768-8b9f-412d-af3f-14068e657934",
 			"key": "scope",
 			"value": "resource:reader"
 		},
 		{
-			"id": "e4d47702-4cca-479c-9005-1d6d0bc481f7",
+			"id": "9b44225c-4759-4684-a487-a83c8c9a5617",
 			"key": "orderId",
 			"value": "3d7cb021-83b6-4773-896d-2d448781a847"
 		}
