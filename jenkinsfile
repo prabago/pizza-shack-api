@@ -72,6 +72,12 @@ pipeline {
                 
                 sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
             }
+             post
+            {
+                 failure {
+        sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
+        }
+            }
         }
 
         stage('Despliegue APPs') {
@@ -80,6 +86,7 @@ pipeline {
                 sh 'apictl import-app -f $APP_DIR/* -e $DEV_ENV -k --preserveOwner --update --verbose'
 
             }
+            
         }
         
         stage('Ejecucion de Tests contra Sandbox') {
@@ -87,6 +94,12 @@ pipeline {
                 echo 'Token are $TOKEN'
                 echo 'Running tests in $DEV_ENV'
                 sh 'newman run ./tests/$API_NAME-$API_VER.postman_collection.json -e ./tests/$DEV_ENV.postman_environment.json --reporters cli,junit,htmlextra --reporter-junit-export "postman.xml" -n 1 --reporter-htmlextra-export "newman/report.html" --insecure --bail' 
+            }
+            post
+            {
+                 failure {
+        sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
+        }
             }
         }
     }
@@ -101,9 +114,6 @@ pipeline {
               reportFiles: 'report.html',
               reportName: "postman-test"
             ])
-        }
-        failure {
-        sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
         }
         cleanup {
             sh 'apictl logout $DEV_ENV -k'
