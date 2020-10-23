@@ -13,7 +13,8 @@ tags:
 availableTiers:
 - name: Bronze
 status: PUBLISHED
-visibility: public
+visibility: restricted
+visibleRoles: Internal/subscriber
 transports: https
 corsConfiguration:
   corsConfigurationEnabled: true
