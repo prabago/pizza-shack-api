@@ -1,0 +1,270 @@
+{
+  "id": 81,
+  "name": "TestAPP",
+  "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
+  "subscriber": {
+    "name": "LDAP/gauss",
+    "id": 61,
+    "tenantId": 0
+  },
+  "subscribedAPIs": [
+    {
+      "subscriptionId": 62,
+      "tier": {
+        "name": "Unlimited",
+        "displayName": "Unlimited",
+        "requestsPerMin": 0,
+        "requestCount": 0,
+        "unitTime": 0,
+        "timeUnit": "ms",
+        "stopOnQuotaReached": true
+      },
+      "subscriber": {
+        "name": "LDAP/gauss",
+        "id": 61,
+        "tenantId": 0
+      },
+      "apiId": {
+        "providerName": "adminatc",
+        "apiName": "PizzaShackAPI",
+        "version": "1.0.0",
+        "id": 0
+      },
+      "application": {
+        "id": 0,
+        "name": "TestAPP",
+        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
+        "subscriber": {
+          "name": "LDAP/gauss",
+          "id": 61,
+          "tenantId": 0
+        },
+        "subscribedAPIs": [],
+        "keys": [],
+        "keyManagerWiseOAuthApp": {},
+        "applicationAttributes": {},
+        "subscriptionCount": 0
+      },
+      "subStatus": "UNBLOCKED",
+      "subCreatedStatus": "SUBSCRIBE",
+      "keys": [],
+      "uuid": "0b399fc0-ad31-4ddf-9b96-4fc7dac18238",
+      "isBlocked": false
+    },
+    {
+      "subscriptionId": 111,
+      "tier": {
+        "name": "Bronze",
+        "displayName": "Bronze",
+        "requestsPerMin": 0,
+        "requestCount": 0,
+        "unitTime": 0,
+        "timeUnit": "ms",
+        "stopOnQuotaReached": true
+      },
+      "subscriber": {
+        "name": "LDAP/gauss",
+        "id": 61,
+        "tenantId": 0
+      },
+      "apiId": {
+        "providerName": "adminatc",
+        "apiName": "internal-api-mock",
+        "version": "v1",
+        "id": 0
+      },
+      "application": {
+        "id": 0,
+        "name": "TestAPP",
+        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
+        "subscriber": {
+          "name": "LDAP/gauss",
+          "id": 61,
+          "tenantId": 0
+        },
+        "subscribedAPIs": [],
+        "keys": [],
+        "keyManagerWiseOAuthApp": {},
+        "applicationAttributes": {},
+        "subscriptionCount": 0
+      },
+      "subStatus": "UNBLOCKED",
+      "subCreatedStatus": "SUBSCRIBE",
+      "keys": [],
+      "uuid": "59ad2326-7457-42b5-8368-2d450c4b8984",
+      "isBlocked": false
+    },
+    {
+      "subscriptionId": 112,
+      "tier": {
+        "name": "Bronze",
+        "displayName": "Bronze",
+        "requestsPerMin": 0,
+        "requestCount": 0,
+        "unitTime": 0,
+        "timeUnit": "ms",
+        "stopOnQuotaReached": true
+      },
+      "subscriber": {
+        "name": "LDAP/gauss",
+        "id": 61,
+        "tenantId": 0
+      },
+      "apiId": {
+        "providerName": "prabago",
+        "apiName": "api-tool-httpbin",
+        "version": "v2",
+        "id": 0
+      },
+      "application": {
+        "id": 0,
+        "name": "TestAPP",
+        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
+        "subscriber": {
+          "name": "LDAP/gauss",
+          "id": 61,
+          "tenantId": 0
+        },
+        "subscribedAPIs": [],
+        "keys": [],
+        "keyManagerWiseOAuthApp": {},
+        "applicationAttributes": {},
+        "subscriptionCount": 0
+      },
+      "subStatus": "UNBLOCKED",
+      "subCreatedStatus": "SUBSCRIBE",
+      "keys": [],
+      "uuid": "c0a9af9c-36f7-4e11-a559-63f85477fba0",
+      "isBlocked": false
+    },
+    {
+      "subscriptionId": 121,
+      "tier": {
+        "name": "Bronze",
+        "displayName": "Bronze",
+        "requestsPerMin": 0,
+        "requestCount": 0,
+        "unitTime": 0,
+        "timeUnit": "ms",
+        "stopOnQuotaReached": true
+      },
+      "subscriber": {
+        "name": "LDAP/gauss",
+        "id": 61,
+        "tenantId": 0
+      },
+      "apiId": {
+        "providerName": "prabago",
+        "apiName": "api-internal-petstore",
+        "version": "v2",
+        "id": 0
+      },
+      "application": {
+        "id": 0,
+        "name": "TestAPP",
+        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
+        "subscriber": {
+          "name": "LDAP/gauss",
+          "id": 61,
+          "tenantId": 0
+        },
+        "subscribedAPIs": [],
+        "keys": [],
+        "keyManagerWiseOAuthApp": {},
+        "applicationAttributes": {},
+        "subscriptionCount": 0
+      },
+      "subStatus": "UNBLOCKED",
+      "subCreatedStatus": "SUBSCRIBE",
+      "keys": [],
+      "uuid": "ad68baaf-23c9-43ee-905f-fc5a165562ca",
+      "isBlocked": false
+    },
+    {
+      "subscriptionId": 141,
+      "tier": {
+        "name": "Bronze",
+        "displayName": "Bronze",
+        "requestsPerMin": 0,
+        "requestCount": 0,
+        "unitTime": 0,
+        "timeUnit": "ms",
+        "stopOnQuotaReached": true
+      },
+      "subscriber": {
+        "name": "LDAP/gauss",
+        "id": 61,
+        "tenantId": 0
+      },
+      "apiId": {
+        "providerName": "prabago",
+        "apiName": "pizza-shack-api",
+        "version": "v1",
+        "id": 0
+      },
+      "application": {
+        "id": 0,
+        "name": "TestAPP",
+        "uuid": "4eac89a4-20b7-4d1c-8216-a6b919c00c4d",
+        "subscriber": {
+          "name": "LDAP/gauss",
+          "id": 61,
+          "tenantId": 0
+        },
+        "subscribedAPIs": [],
+        "keys": [],
+        "keyManagerWiseOAuthApp": {},
+        "applicationAttributes": {},
+        "subscriptionCount": 0
+      },
+      "subStatus": "UNBLOCKED",
+      "subCreatedStatus": "SUBSCRIBE",
+      "keys": [],
+      "uuid": "4372b50c-e87a-4c83-a6fd-3ad47ba15d08",
+      "isBlocked": false
+    }
+  ],
+  "keys": [],
+  "keyManagerWiseOAuthApp": {
+    "SANDBOX": {
+      "Resident Key Manager": {
+        "clientId": "okumwZG8fHkFf4o0iJ_8oKdG6YYa",
+        "clientName": "LDAP_gauss_DefaultApplication_SANDBOX",
+        "callBackURL": "null",
+        "clientSecret": "YnJ4bmJ3OUVfV3hmOFU1bUJBNUtIZmtyVENVYQ\u003d\u003d",
+        "parameters": {
+          "grant_types": "refresh_token urn:ietf:params:oauth:grant-type:saml2-bearer password client_credentials iwa:ntlm urn:ietf:params:oauth:grant-type:device_code urn:ietf:params:oauth:grant-type:jwt-bearer",
+          "redirect_uris": "null",
+          "client_name": "LDAP_gauss_DefaultApplication_SANDBOX"
+        },
+        "isSaasApplication": false,
+        "appAttributes": {}
+      }
+    },
+    "PRODUCTION": {
+      "Resident Key Manager": {
+        "clientId": "tang3mmrKlifsWsk10G9cuFanbYa",
+        "clientName": "LDAP_gauss_DefaultApplication_PRODUCTION",
+        "callBackURL": "null",
+        "clientSecret": "NXhkclRBR0J5Q3dOckVWR2VmZndqY3BfYm5zYQ\u003d\u003d",
+        "parameters": {
+          "grant_types": "refresh_token urn:ietf:params:oauth:grant-type:saml2-bearer password client_credentials iwa:ntlm urn:ietf:params:oauth:grant-type:device_code urn:ietf:params:oauth:grant-type:jwt-bearer",
+          "redirect_uris": "null",
+          "client_name": "LDAP_gauss_DefaultApplication_PRODUCTION"
+        },
+        "isSaasApplication": false,
+        "appAttributes": {}
+      }
+    }
+  },
+  "tier": "Unlimited",
+  "description": "This is the default application",
+  "status": "APPROVED",
+  "groupId": "",
+  "owner": "LDAP/gauss",
+  "applicationAttributes": {
+    "Audiencia": "interna"
+  },
+  "tokenType": "JWT",
+  "subscriptionCount": 0
+}
