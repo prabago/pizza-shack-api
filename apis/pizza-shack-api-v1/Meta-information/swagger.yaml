@@ -364,9 +364,16 @@ components:
           scopes:
             'resource:writer': Internal/writer
             'resource:reader': Internal/reader
+        password:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
       x-scopes-bindings:
         'resource:reader': Internal/reader
         'resource:writer': Internal/writer
+    bearerAuth:
+      type: http
+      scheme: bearer
 x-wso2-auth-header: Authorization
 x-wso2-cors:
   corsConfigurationEnabled: false
