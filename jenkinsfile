@@ -7,7 +7,7 @@ pipeline {
         API_DIR = './apis/'
         APP_DIR = './apps/'
         DEV_ENV = 'local'
-        TEST_SCRIPT_FILE = '${API_NAME}-${API_VER}.postman_collection.json'  
+        TEST_SCRIPT_FILE = '$API_NAME-$API_VER.postman_collection.json'  
     }
                   
     stages {
