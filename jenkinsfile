@@ -73,8 +73,11 @@ pipeline {
         }
 
         stage('Backup API') {
+              when {
+            expression {  env.API_DPL == $API_NAME }
+        }
             steps {
-            sh 'apictl export-api -n $API_NAME -v $API_VER -e $DEV_ENV -k --verbose'
+                sh 'apictl export-api -n $API_NAME -v $API_VER -e $DEV_ENV -k --verbose'
             }
         }
             stage('Despliegue APIS') {
