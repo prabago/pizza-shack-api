@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {nodejs "node"}
     environment {
-        API_NAME = 'pizza-shack-apis'
+        API_NAME = 'pizza-shack-api'
         API_VER= 'v1'
         API_DIR = './apis'
         APP_DIR = './apps'
