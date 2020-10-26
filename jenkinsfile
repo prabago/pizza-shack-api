@@ -65,6 +65,7 @@ pipeline {
         stage('Backup API') {
              environment{
                   API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME", , returnStdout: true)
+                  echo "deployment $API_DPL"
              }
               when {
                 expression {  env.API_DPL == env.API_NAME }
