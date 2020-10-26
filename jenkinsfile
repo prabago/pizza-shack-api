@@ -80,7 +80,7 @@ pipeline {
             }
             steps {
                 
-                echo "Import APIs to ${DEV_ENV}"
+                echo "Import APIs to ${DEV_ENV} deployment: ${API_DPL}"
                 
                 sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
             }
