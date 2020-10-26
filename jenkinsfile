@@ -65,7 +65,7 @@ pipeline {
         stage('Backup API') {
              environment{
                   API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME", , returnStdout: true)
-                  echo "deployment $API_DPL"
+
              }
               when {
                 expression {  env.API_DPL == env.API_NAME }
@@ -79,6 +79,7 @@ pipeline {
                 RETRY = '80'
             }
             steps {
+                echo "deployment $API_DPL"
                 echo "Import APIs to ${DEV_ENV}"
                 
                 sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
