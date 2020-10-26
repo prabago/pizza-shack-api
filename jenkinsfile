@@ -58,7 +58,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'apim_dev', usernameVariable: 'DEV_USERNAME', passwordVariable: 'DEV_PASSWORD')]) {
                     sh 'apictl login $DEV_ENV -u $DEV_USERNAME -p $DEV_PASSWORD -k'                        
                 }
-                API_DPL = sh(script: "apictl list apis -e local| awk '{print $2}' | grep $API_NAME", , returnStdout: true).trim()
+                API_DPL = sh(script: "apictl list apis -e local| awk "{print $2}" | grep $API_NAME", , returnStdout: true).trim()
             }
         }
         stage('Backup API') {
