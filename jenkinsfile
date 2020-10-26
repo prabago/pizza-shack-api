@@ -67,7 +67,7 @@ pipeline {
                   API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME", returnStatus: true)
              }
               when {
-                expression {  env.API_DPL == 0 }
+                expression {  env.API_DPL != 0 }
              }
             steps {
                 echo "deployment $API_DPL"
@@ -80,7 +80,7 @@ pipeline {
             }
             steps {
                 
-                echo "Import APIs to ${DEV_ENV} deployment: ${API_DPL}"
+                echo "Import APIs to ${DEV_ENV}"
                 
                 sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
             }
