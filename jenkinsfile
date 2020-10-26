@@ -64,13 +64,13 @@ pipeline {
     
         stage('Backup API') {
              environment{
-                  API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME", , returnStdout: true)
-
+                  API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME", returnStatus: true)
              }
               when {
-                expression {  env.API_DPL == env.API_NAME }
+                expression {  env.API_DPL == 0 }
              }
             steps {
+                echo "deployment $API_DPL"
                 sh 'apictl export-api -n $API_NAME -v $API_VER -e $DEV_ENV -k --verbose'
             }
         }
@@ -79,7 +79,7 @@ pipeline {
                 RETRY = '80'
             }
             steps {
-                echo "deployment $API_DPL"
+                
                 echo "Import APIs to ${DEV_ENV}"
                 
                 sh 'apictl import-api -f $API_DIR/* -e $DEV_ENV -k --preserve-provider --update --verbose'
