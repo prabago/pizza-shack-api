@@ -64,7 +64,7 @@ pipeline {
         stage('check Deployment') {
             steps {
 
-                API_DPL = sh(script: "apictl list apis -e local| awk {print $2}' | grep $API_NAME", , returnStdout: true).trim()
+                API_DPL = sh(script: "apictl list apis -e local| awk '{print $2}' | grep $API_NAME", , returnStdout: true).trim()
                 echo "deployment $API_DPL"
             }
         }
