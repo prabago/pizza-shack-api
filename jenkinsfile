@@ -72,7 +72,7 @@ pipeline {
         stage('Backup API') {
         
               when {
-              expression { API_BACKUP == 'true' }
+              expression { API_BACKUP == 'false' }
              }
             steps {
                 echo "deployment $API_DPL"
