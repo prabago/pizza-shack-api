@@ -59,7 +59,7 @@ pipeline {
                     sh 'apictl login $DEV_ENV -u $DEV_USERNAME -p $DEV_PASSWORD -k'                        
                 }
                 script{
-                def API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\"-"'\$2}\' | grep $API_NAME | tr -d '\r'", returnStdout: true).trim()
+                def API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\':'\$2}\' | grep $API_NAME | tr -d '\r'", returnStdout: true).trim()
                 if (API_DPL == API_NAME ){
                    API_BACKUP = 'true'
                 }
