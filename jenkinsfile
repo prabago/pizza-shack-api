@@ -8,7 +8,7 @@ pipeline {
         APP_DIR = './apps'
         DEV_ENV = 'local'
         API_BCK = '/var/lib/jenkins/.wso2apictl/exported/apis/'
-        API_DPL = ''
+        API_BACKUP = 'false'
         
     }
                   
@@ -58,16 +58,21 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'apim_dev', usernameVariable: 'DEV_USERNAME', passwordVariable: 'DEV_PASSWORD')]) {
                     sh 'apictl login $DEV_ENV -u $DEV_USERNAME -p $DEV_PASSWORD -k'                        
                 }
-            
+                script{
+                def API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME | tr -d '\r'", returnStdout: true).trim()
+                if (API_DPL == API_NAME ){
+                   API_BACKUP = 'true'
+                }
+                echo "Prueba---> ${API_DPL}"
+                echo "API_BACKUP---> ${API_BACKUP}"
+                }
             }
         }
     
         stage('Backup API') {
-             environment{
-                  API_DPL = sh(script: "apictl list apis -e $DEV_ENV |  awk \'{print \$2}\' | grep $API_NAME", returnStdout: true).trim()
-             }
+        
               when {
-                expression { API_DPL == env.API_NAME }
+              expression { API_BACKUP == 'true' }
              }
             steps {
                 echo "deployment $API_DPL"
