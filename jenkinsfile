@@ -70,12 +70,10 @@ pipeline {
         }
     
         stage('Backup API') {
-        
-              when {
-              expression { API_BACKUP == 'false' }
+            when {
+              expression { API_BACKUP == 'true' }
              }
             steps {
-                echo "deployment $API_DPL"
                 sh 'apictl export-api -n $API_NAME -v $API_VER -e $DEV_ENV -k --verbose'
             }
         }
