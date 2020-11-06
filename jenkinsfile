@@ -52,8 +52,6 @@ pipeline {
 
         stage('Pre Task Deployment') {
             steps {
-                echo "Register to ${DEV_ENV}"
-                sh './apim-arq/scripts/config.sh'
                 echo 'Logging into ${$DEV_ENV}'
                 withCredentials([usernamePassword(credentialsId: 'apim_dev', usernameVariable: 'DEV_USERNAME', passwordVariable: 'DEV_PASSWORD')]) {
                     sh 'apictl login $DEV_ENV -u $DEV_USERNAME -p $DEV_PASSWORD -k'                        
@@ -90,25 +88,6 @@ pipeline {
                 
                 sh 'apictl vcs deploy -e $DEV_ENV'
             }
-             post
-            {
-                 failure {
-                     script {
-                    if (API_BACKUP == 'true')
-                        sh 'apictl import-api -f ${API_BCK}/${DEV_ENV}/${API_NAME}_${API_VER}.zip -e $DEV_ENV -k --preserve-provider --update --verbose'
-            }
-        
-        }
-            }
-        }
-
-        stage('Despliegue APPs') {
-            steps {
-                echo "Import APPs to ${DEV_ENV}"
-                sh 'apictl import-app -f $APP_DIR/* -e $DEV_ENV -k --preserveOwner --update --verbose'
-
-            }
-            
         }
         
         stage('Ejecucion de Tests contra Sandbox') {
