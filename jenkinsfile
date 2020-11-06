@@ -88,7 +88,7 @@ pipeline {
                 
                 echo "Import APIs to ${DEV_ENV}"
                 
-                sh 'apictl import-api -f $API_DIR/$API_NAME-$API_VER -e $DEV_ENV -k --preserve-provider --update --verbose'
+                sh 'apictl vcs deploy -e $DEV_ENV'
             }
              post
             {
